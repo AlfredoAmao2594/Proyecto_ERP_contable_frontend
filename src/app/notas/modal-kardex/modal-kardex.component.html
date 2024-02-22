@@ -1,0 +1,47 @@
+<mat-card class="example-card custom-dialog">
+  <mat-card-header class="custom-header">
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>KARDEX</mat-card-title>
+    <mat-card-subtitle class="subtitle">Reporte de Notas</mat-card-subtitle>
+  </mat-card-header>
+ 
+  <mat-card-content class="tamanio">
+    <mat-table #table [dataSource]="dataList" class="table-mat">
+      <!-- Position Column -->
+      <ng-container matColumnDef="idProducto">
+        <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+        <mat-cell *matCellDef="let NotaReporte"> {{NotaReporte.idProducto}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="detalleProducto">
+        <mat-header-cell *matHeaderCellDef> Detalle Producto </mat-header-cell>
+        <mat-cell *matCellDef="let NotaReporte"> {{NotaReporte.detalleProducto}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="cantidad">
+        <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef="let NotaReporte"> {{NotaReporte.cantidad}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="importeTotal">
+        <mat-header-cell *matHeaderCellDef>Importe Total</mat-header-cell>
+        <mat-cell *matCellDef="let NotaReporte">{{NotaReporte.importeTotal}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+        <mat-cell *matCellDef="let NotaReporte">{{NotaReporte.precio}}</mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-card-content>
+
+  <mat-card-actions class="custom-footer">
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+    <button mat-button (click)="generarReporte()">Generar TXT</button>
+  </mat-card-actions>
+</mat-card>

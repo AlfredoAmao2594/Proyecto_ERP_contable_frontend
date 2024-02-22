@@ -1,0 +1,29 @@
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .table-mat{
+    background-color: rgba(177, 166, 166, 0.459);
+  }
+
+  mat-cell,mat-header-cell {
+    color: #333;
+  }
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 1000px;
+  }
+
+  .formulario{
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }

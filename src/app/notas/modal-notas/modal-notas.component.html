@@ -1,0 +1,112 @@
+<mat-card class="example-card custom-dialog">
+    <mat-card-header class="custom-header">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Registro de Nota de Servicio</mat-card-title>
+      <mat-card-subtitle class="subtitle"></mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content class="tamanio">
+        <form class="form-group formulario" [formGroup]="formData" >
+        <table class="example-full-width" cellspacing="2">
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="fecha">Fecha</mat-label>
+                        <input matInput  [id]="formFields.Fecha" [name]="formFields.Fecha"
+                        [formControlName]="this.formFields.Fecha" [matDatepicker]="picker" placeholder="Seleccione Una Fecha">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="tipo">Tipo de Nota</mat-label>
+                        <mat-select placeholder="Seleecione Tipo Nota" [id]="formFields.Tipo" [formControlName]="this.formFields.Tipo" name="formFields.Tipo"
+                        (selectionChange)="setTypeChance($event.value)">
+                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                              {{tipo.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width" >
+                        <mat-label for="comprobante">Tipo Comprobante</mat-label>
+                        <mat-select placeholder="Seleecione Comprobante" [id]="formFields.Comprobante" [formControlName]="this.formFields.Comprobante" name="formFields.Comprobante">
+                            <mat-option *ngFor="let comp of comprobantes" [value]="comp.id">
+                              {{comp.descripcion}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div *ngIf="tipo === 'egreso'">
+                    <mat-form-field class="example-full-width" >
+                        <mat-label for="cliente">Cliente</mat-label>
+                        <mat-select placeholder="Seleecione Cliente" [id]="formFields.Cliente" [formControlName]="this.formFields.Cliente" name="formFields.Cliente">
+                            <mat-option *ngFor="let cli of clientes" [value]="cli.id">
+                              {{cli.razonSocial}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                </td>
+                <td>
+                    <div *ngIf="tipo === 'ingreso'">
+                    <mat-form-field class="example-full-width" >
+                        <mat-label for="proveedor">Proveedor</mat-label>
+                        <mat-select placeholder="Seleecione Proveedor" [id]="formFields.Proveedor" [formControlName]="this.formFields.Proveedor" name="formFields.Proveedor">
+                            <mat-option *ngFor="let prov of proveedores" [value]="prov.id">
+                              {{prov.razonSocial}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    </div>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="producto">Producto</mat-label>
+                        <mat-select placeholder="Seleecione Producto"  [id]="formFields.Producto" [formControlName]="this.formFields.Producto" name="formFields.Producto">
+                            <mat-option *ngFor="let prod of productos" [value]="prod.id">
+                              {{prod.detalle}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td> 
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="cantidad">Cantidad</mat-label>
+                        <input matInput [id]="formFields.Cantidad" [name]="formFields.Cantidad" [formControlName]="this.formFields.Cantidad" type="text">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="precio">Precio Unitario</mat-label>
+                        <input matInput [id]="formFields.Precio" [name]="formFields.Precio" [formControlName]="this.formFields.Precio" type="text">
+                    </mat-form-field> 
+                </td>
+                <td>
+                    <mat-form-field class="example-full-width">
+                        <mat-label for="importe">Importe Total</mat-label>
+                        <input matInput [id]="formFields.Importe" [name]="formFields.Importe" [formControlName]="this.formFields.Importe" type="text">
+                    </mat-form-field> 
+                </td>
+            </tr>
+        </table>
+    </form>
+    </mat-card-content>
+
+    <mat-card-actions class="custom-footer">
+      <button mat-button (click)="onNoClick()">Cerrar</button>
+      <button mat-button (click)="save()">Registrar</button>
+    </mat-card-actions>
+  </mat-card>

@@ -1,0 +1,83 @@
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtro">
+    </mat-form-field>
+    <ng-container>
+          <button mat-button (click)="onNoClick()" >Cerrar</button>
+    </ng-container>
+
+</div>
+  
+  <div class="example-container mat-elevation-z8">
+  
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="onCheckboxChange(row)"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let dataList"> {{dataList.id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Progress Column -->
+      <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let dataList"> {{dataList.Fecha}}% </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="numeroDocumento">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Numero Documento </mat-header-cell>
+        <mat-cell *matCellDef="let dataList"> {{dataList.numeroDocumento}} </mat-cell>
+      </ng-container>
+  
+      <!-- Color Column -->
+      <ng-container matColumnDef="razonSocial">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Razon Social </mat-header-cell>
+        <mat-cell *matCellDef="let dataList" > {{dataList.razonSocial}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="cantidad">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </mat-header-cell>
+        <mat-cell *matCellDef="let dataList" > {{dataList.cantidad}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+        <mat-cell *matCellDef="let dataList" > {{dataList.precio}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="impTotal">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Importe Total </mat-header-cell>
+        <mat-cell *matCellDef="let dataList" > {{dataList.impTotal}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+      </mat-row>
+    </mat-table>
+  
+    <mat-paginator 
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    [showFirstLastButtons]="true">
+    </mat-paginator>
+    
+  </div>
+

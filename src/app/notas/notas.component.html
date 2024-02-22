@@ -1,0 +1,51 @@
+<div class="col-sm-12"  >
+    <div class="card text-left">
+      <img class="card-img-top" src="holder.js/100px180/" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Listado de Notas</h4>
+        <div class="row">
+            <div class="col-2">
+              <button mat-raised-button (click)="openDialogNotas()" type="button" >Registrar Nota</button>
+            </div>
+            <div class="col-2"> 
+              <button mat-raised-button (click)="openDialog()" color="primary">Reporte Kardex</button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table datatable 
+            class="table table-striped row-border table-hover">
+            <thead>
+                <tr>
+                    <th class="col-1">ID</th>
+                    <th class="col-1">Fecha</th>
+                    <th class="col-1">Tipo de Nota</th>
+                    <th class="col-1">Numero Documento</th>
+                    <th class="col-1">Razon Social</th>
+                    <th class="col-1">Descripcion</th>
+                    <th class="col-1">Detalle</th>
+                    <th class="col-1">Cantidad</th>
+                    <th class="col-1">Precio</th>
+                    <th class="col-1">Importe Total</th>
+                    <th class="col-1"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of dataList">
+                  <td>{{item.id}}</td>
+                  <td>{{item.fecha}}</td>
+                  <td>{{item.tipoNota}}</td>
+                  <td>{{item.numeroDocumento}}</td>
+                  <td>{{item.razonSocial}}</td>
+                  <td>{{item.descripcion}}</td>
+                  <td>{{item.detalle}}</td>
+                  <td>{{item.cantidad}}</td>
+                  <td>{{item.precio}}</td>
+                  <td>{{item.impTotal}}</td>
+                  <td><mat-icon color = "warn"triggers="mouseenter:mouseleave" (click)="delete(item)">delete_forever</mat-icon></td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+</div>

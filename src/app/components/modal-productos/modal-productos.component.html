@@ -1,0 +1,56 @@
+<h1 mat-dialog-title>Productos</h1>
+
+
+<form class="form-group formulario" [formGroup]="formData" >
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width">
+          <mat-label for="detalle">Detalle</mat-label>
+          <input matInput [id]="formFields.Detalle" [name]="formFields.Detalle" [formControlName]="this.formFields.Detalle" type="text">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width">
+          <mat-label for="marca">Marca</mat-label>
+          <input matInput [id]="formFields.Marca" [name]="formFields.Marca" [formControlName]="this.formFields.Marca"type="text">
+        </mat-form-field></td>
+      </tr>
+        <td>
+            <button mat-raised-button color="accent" type="button" (click)="save()" type="submit">Guardar</button>
+        </td>
+    </table>
+</form>
+<div class="example-container mat-elevation-z8" color="accent">
+    <mat-table #table [dataSource]="dataList" class="table-mat">
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+        <mat-cell *matCellDef="let PorductosDto"> {{PorductosDto.id}} </mat-cell>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="detalle">
+        <mat-header-cell *matHeaderCellDef> Detalle </mat-header-cell>
+        <mat-cell *matCellDef="let PorductosDto"> {{PorductosDto.detalle}} </mat-cell>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="marca">
+        <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+        <mat-cell *matCellDef="let PorductosDto"> {{PorductosDto.marca}} </mat-cell>
+      </ng-container>
+      
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let PorductosDto"><mat-icon 
+            color = "warn"triggers="mouseenter:mouseleave" 
+            (click)="delete(PorductosDto.id)">delete_forever</mat-icon></mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Salir</button>
+</div>

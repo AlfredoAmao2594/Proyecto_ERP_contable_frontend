@@ -1,0 +1,58 @@
+<h1 mat-dialog-title>Nuevo Proveedor</h1>
+<form class="form-group formulario" [formGroup]="formData" >
+    <table class="example-full-width" cellspacing="10">
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="documento">Tipo Documento</mat-label>
+                    <mat-select placeholder="Seleecione" [formControlName]="this.formFields.Tipo" name="formFields.Tipo">
+                        <mat-option *ngFor="let tipo of documentos" [value]="tipo.id">
+                          {{tipo.descripcion}}
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="numero">Numero Documento</mat-label>
+                    <input matInput [id]="formFields.Numero" [name]="formFields.Numero" [formControlName]="this.formFields.Numero" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="rsocial">Razon Social</mat-label>
+                    <input matInput [id]="formFields.Razon" [name]="formFields.Razon" [formControlName]="this.formFields.Razon" type="text">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="pais">Pais</mat-label>
+                    <input matInput [id]="formFields.Pais" [name]="formFields.Pais" [formControlName]="this.formFields.Pais" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="ciudad">Ciudad</mat-label>
+                    <input matInput [id]="formFields.Ciudad" [name]="formFields.Ciudad" [formControlName]="this.formFields.Ciudad" type="text">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                    <mat-label for="direccion">Dirección</mat-label>
+                    <input matInput [id]="formFields.Direccion" [name]="formFields.Direccion" [formControlName]="this.formFields.Direccion" type="text">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button mat-raised-button color="accent" type="button" (click)="save()" type="submit">Guardar</button>
+            </td>
+            <td>
+                <button mat-raised-button color="warn" type="button" (click)="onNoClick()" type="submit">Salir</button>
+            </td>
+        </tr>
+
+    </table>
+</form>

@@ -1,0 +1,66 @@
+<mat-card class="example-card custom-dialog">
+    <mat-card-header class="custom-header">
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Registro de Compras</mat-card-title>
+      <mat-card-subtitle class="subtitle">Reporte</mat-card-subtitle>
+        <div class="item-button">
+            <button mat-raised-button color="primary" (click)="openDialogCompras()">Registrar Comprobante</button>
+        </div>  
+    </mat-card-header>
+      
+      
+    <mat-card-content class="tamanio">
+      <mat-table #table [dataSource]="dataList" class="table-mat">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef > Id. </mat-header-cell>
+          <mat-cell *matCellDef="let CompraListDto"> {{CompraListDto.id}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="fecha">
+          <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+          <mat-cell *matCellDef="let CompraListDto"> {{CompraListDto.fecha}} </mat-cell>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="descripcion">
+          <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+          <mat-cell *matCellDef="let CompraListDto"> {{CompraListDto.descripcion}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="TipoDocumento">
+          <mat-header-cell *matHeaderCellDef>Tipo Documento</mat-header-cell>
+          <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.descripcionDocumento}}</mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="numeroDocumento">
+          <mat-header-cell *matHeaderCellDef>Numero de Documento</mat-header-cell>
+          <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.numeroDocumento}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="razonSocial">
+            <mat-header-cell *matHeaderCellDef>Razon Social</mat-header-cell>
+            <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.razonSocial}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="baseImponible">
+            <mat-header-cell *matHeaderCellDef>Base Imponible</mat-header-cell>
+            <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.baseImponible}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="igv">
+            <mat-header-cell *matHeaderCellDef>IGV</mat-header-cell>
+            <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.igv}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="importeTotal">
+            <mat-header-cell *matHeaderCellDef>Importe Total</mat-header-cell>
+            <mat-cell *matCellDef="let CompraListDto">{{CompraListDto.importeTotal}}</mat-cell>
+        </ng-container>
+        
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
